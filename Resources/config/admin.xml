@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+ 
+    <services> 
+         <service id="mosaic_newsletter.admin.subscriber" class="%mosaic_newsletter.admin.subscriber.class%">
+            <argument />
+            <argument>%mosaic_newsletter.entity.subscriber.class%</argument>
+            <argument>%mosaic_newsletter.admin.subscriber.controller%</argument>
+            <tag name="sonata.admin" manager_type="orm" group="admin"  label="label.menu.subscriber"  show_in_dashboard="false" label_catalogue="%mosaic_newsletter.admin.subscriber.translation_domain%"  />
+            <call method="setTranslationDomain">
+                <argument>%mosaic_newsletter.admin.subscriber.translation_domain%</argument>
+            </call> 
+        </service> 
+    </services>
+     
+</container>

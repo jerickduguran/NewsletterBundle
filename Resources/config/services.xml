@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+ 
+    <services> 
+        <service id="mosaic_newsletter.manager.subscriber" class="%mosaic_newsletter.manager.subscriber%">
+               <argument type="service" id="doctrine.orm.default_entity_manager" />
+               <argument>%mosaic_newsletter.entity.subscriber.class%</argument>
+        </service>            
+        <service id="mosaic_newsletter.widget.subscriber" class="%mosaic_newsletter.widget.newsletter.class%" parent="mosaic_widget.widget.abstract">
+            <tag name="mosaic_widget.widget" /> 
+            <argument type="service" id="mosaic_newsletter.manager.subscriber"/>
+        </service>          
+        <service id="mosaic_newsletter.form.type.subscriber" class="%mosaic_newsletter.form.subscriber.class%">
+            <tag name="form.type"  alias="mosaic_newsletter" />    
+            <argument type="service" id="session" /> 
+            <argument type="service" id="request_stack" /> 
+        </service>           
+        <service id="mosaic_newsletter.form.subscriber" factory-method="createNamed" factory-service="form.factory" class="Symfony\Component\Form\Form">
+            <argument>mosaic_newsletter</argument>
+            <argument>mosaic_newsletter</argument>       
+            <argument>null</argument>   
+            <argument type="collection">
+                <argument key="validation_groups">%mosaic_newsletter.form.subscriber.validation_groups%</argument>
+            </argument>
+        </service>         
+    </services>
+     
+</container>

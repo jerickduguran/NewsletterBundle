@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#newsletter_wrapper_{{id}}").delegate("#newsletter_{{ id}}","submit",function(e){ 
+            $("#newsletter_{{id}}").find("input[type='submit']").addClass("disabled").attr("disabled","disabled");
+            e.preventDefault();
+            var data = $(this).serialize();  
+            {% set query_params = {id: id} %}
+            $.ajax({
+                url: "{{ path("mosaic_newsletter_subscribe",query_params)|raw}}",
+                data: data,
+                method: 'POST',
+                success: function(resp){ 
+                    $("#newsletter_wrapper_{{id}}").undelegate();
+                    $("#newsletter_wrapper_{{id}}").html(resp.html); 
+                    $("#newsletter_{{ id}}").find("input[type='submit']").removeClass("disabled").removeAttr("disabled","disabled");                
+                }
+            });  
+            return false;
+        });
+    });
+</script>

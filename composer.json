@@ -1,0 +1,31 @@
+{
+    "name": "groupm-mosaic/newsletter-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Newsletter Bundle",
+    "keywords": ["symfony2", "GroupM", "Mosaic", "Mosaic Bundle","Newsletter Bundle"], 
+    "license": "MIT",
+    "authors": [
+        {
+          "name": "Jerick Duguran",
+          "email": "jerick.duguran@movent.com",
+          "homepage": "http://www.movent.com"
+        },
+        {
+          "name": "Andrew Aculana",
+          "email": "andrew.aculana@movent.com",
+          "homepage": "http://www.movent.com"
+        }
+    ],
+    "require": {
+        "jerickduguran/recaptcha-bundle":  "dev-master", 
+        "groupm-mosaic/core-bundle":  "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "Groupm\\Mosaic\\Bundle\\NewsletterBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-2.0.2": "2.0.0.x-dev"
+        }
+    }
+}

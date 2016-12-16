@@ -1,0 +1,29 @@
+{% extends mosaic_themed_template("MosaicNewsletterBundle:Widget:base_template.html.twig") %}  
+{% block form_contents %}   
+    <h3>Newsletter</h3>
+    
+      {% if not form.vars.valid %}
+        <div clas="row">
+            <div class="col-md-12"> 
+                <div class="alert alert-warning">
+                    <strong>Error!</strong> Please check your form.
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% set success_message = app.session.flashBag.get('newsletter_subscriber_form_success') %}
+    {% if success_message %} 
+        <div class="row">
+              <div class="cold-md-12">
+                <div class="alert alert-success">
+                    <strong>Thank You!</strong>
+                </div>
+              </div>
+        </div>
+    {% endif %} 
+    {{ form_start(form,{'attr' : {id: 'newsletter_'~id},'action' :  path("mosaic_newsletter_subscribe",{'id': id,wd : attributes})}) }}
+        {{ form_row(form.email,{id: random()}) }}
+        {{ form_row(form._token,{id: random()}) }}
+        <input autocomplete="off" type="submit" name="submit" value="Subscribe" class="btn btn-primary"/>
+    {{ form_end(form) }}
+{% endblock form_contents %}  

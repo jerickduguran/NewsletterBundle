@@ -1,0 +1,6 @@
+{% block form_contents_wrapper %}
+    <div id="newsletter_wrapper_{{id}}">
+        {% block form_contents %}{% endblock form_contents %}
+    </div>
+{% endblock form_contents_wrapper %} 
+{% block scripts %} {% include mosaic_themed_template("MosaicNewsletterBundle:Widget:scripts.html.twig") with {id:id, form: form,attributes: attributes} %}{% endblock %}
